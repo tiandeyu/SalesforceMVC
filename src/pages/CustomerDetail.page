@@ -1,0 +1,51 @@
+<!--
+ - Author : Natic
+ - View : Display messages
+ -->
+
+<apex:page id="CustomerDetail" controller="CustomerController" showHeader="false" sideBar="false">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <style>
+        #customer {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 100px;
+            text-align: center;
+            line-height: 33px;
+            font-size: 20px;
+        }
+    </style>
+
+    <div id="customer">
+        <h1>Welcome {{ name }}</h1><br/>
+        <h1>Phone : {{ phone }}</h1><br/>
+        <h1>Email : {{ email }}</h1><br/>
+        <h1>WebSite : {{ website }}</h1><br/>
+        <h1>You have  {{ openCase }} open cases</h1><br/>
+    </div>
+
+
+    <script>
+        debugger;
+        var contactId = "00336000007FDGu";
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.CustomerController.getContactById}', contactId,
+                function (result, event) {
+                    if (event.status && result && result.success) {
+                        var customer = new Vue({
+                            el: '#customer',
+                            data: {
+                                name:     result.name,
+                                email:    result.email,
+                                phone:    result.phone,
+                                website:  result.website,
+                                openCase: result.openCaseNumber
+                            }
+                        });
+                    }
+                },
+                {escape: true}
+        );
+    </script>
+</apex:page>
