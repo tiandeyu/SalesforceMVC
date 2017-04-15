@@ -12,7 +12,7 @@ Controller不够就加Handler，Handler不够就再加一个Helper，并且方�
 
 假如我们有一个需求，在页面上展示联系人的名字、电话、邮箱、关联Account上面的Website和关联Case的数量。
 传统的做法是在Controller里面加一个Wrapper Class，把Contact和其他2个关联信息放进Wrapper, 
-然后在Controller里面一步一步写SOQL取Contact,取website，计算Case数量等逻辑。这么做看似没有什么问题，
+然后在Controller里面一步一步写SOQL取Contact, 取website，计算Case数量等逻辑。这么做看似没有什么问题，
 一旦业务逻辑慢慢复杂起来，代码就会变得越来越糟糕。
 
 在示例代码中，Customer Class是Model，包含一个继承内部类CustomerViewModel负责实现前台页面展示数据的结构，
