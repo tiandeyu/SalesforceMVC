@@ -1,5 +1,7 @@
 # SalesforceMVC
 
+Salesforce MVC是一个用MVC和面向对象思想设计出来的一套Apex框架。
+
 想必大家肯定经常遇到业务特别复杂的情况下，Apex Controller和Apex Handler变得异常臃肿并且难以维护的问题。
 为了完成复杂的业务需求不得不在Controller里面加Handle, Helper, Utility等。
 随着时间的推迟，代码变得越来越复杂越来越乱，层次不清晰，难以维护，难以测试。
@@ -21,6 +23,8 @@ Controller不够就加Handler，Handler不够就再加一个Helper，并且方�
 
 Model封装逻辑代码，ViewModel传送前台页面需要的信息，Controller负责装配Model然后返回ViewModel给前台。分工协作，层次清晰。
 
+
+Salesforce MVC is an Apex framework which is designed based on MVC and Object-Oriented ideas.
 
 Software engineers often face complex business logic to develop the systems. 
 Therefore, Apex controllers and Apex handlers will become more complex leading to maintenance issue.
