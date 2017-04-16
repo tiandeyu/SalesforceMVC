@@ -5,7 +5,24 @@
 
 <apex:page id="CustomerDetail" controller="CustomerController" showHeader="false" sideBar="false">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-
+    <script>
+        window.onload = function () {
+            var contactId = "00336000007FDGu";
+            Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CustomerController.getContactById}', contactId,
+                    function (result, event) {
+                        if (event.status && result && result.success) {
+                            customer.name     = result.name;
+                            customer.email    = result.email;
+                            customer.phone    = result.phone;
+                            customer.website  = result.website;
+                            customer.openCase = result.openCaseNumber;
+                        }
+                    },
+                    {escape: true}
+            );
+        }
+    </script>
     <style>
         #customer {
             width: 500px;
@@ -27,25 +44,15 @@
 
 
     <script>
-        debugger;
-        var contactId = "00336000007FDGu";
-        Visualforce.remoting.Manager.invokeAction(
-            '{!$RemoteAction.CustomerController.getContactById}', contactId,
-                function (result, event) {
-                    if (event.status && result && result.success) {
-                        var customer = new Vue({
-                            el: '#customer',
-                            data: {
-                                name:     result.name,
-                                email:    result.email,
-                                phone:    result.phone,
-                                website:  result.website,
-                                openCase: result.openCaseNumber
-                            }
-                        });
-                    }
-                },
-                {escape: true}
-        );
+        var customer = new Vue({
+            el: '#customer',
+            data: {
+                name:     '',
+                email:    '',
+                phone:    '',
+                website:  '',
+                openCase: ''
+            }
+        });
     </script>
 </apex:page>
